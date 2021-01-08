@@ -1,7 +1,8 @@
 .test-layout {
-  width: 100vw;
-  height: 80vh;
-  border: 1px solid black;
+  width: 99vw;
+  height: 25vh;
+  border: 1px solid white;
+  border-radius: 2px;
 }
 /* this test-layout class for test it will be terminated */
 
@@ -10,13 +11,15 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  border-radius: 2px;
 }
 
 /* header */
 .RCA-header-container {
   flex-basis: 50px;
-  background-color: rgb(224, 215, 202);
+  background-color: rgb(209, 240, 226);
   display: flex;
+  border-radius: 2px;
 }
 
 .move-button {
@@ -69,7 +72,7 @@
 
 .RCA-calendar-container {
   flex-grow: 1;
-  background-color: rgb(127, 184, 127);
+  background-color: rgb(255, 255, 255);
 }
 
 /* calendar-header */

@@ -17,7 +17,7 @@ class Header extends Component {
                         </i>
                     </li>
                     <li>
-                        이동
+                        오늘
                     </li>
                     <li>
                         <i className="move-button right-img icon" onClick={() => { this.props.moveMonth(1) }}>

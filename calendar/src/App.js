@@ -50,7 +50,7 @@ export default class App extends Component {
             <div className="test-layout">
                 <div className="RCA-app-container">
                     <Header calendarYM={this.state.calendarYM.format("YYYY년 MM월")}
-                        today={this.state.today.format("현재 YYYY - MM - DD")}
+                        today={this.state.today.format("YYYY - MM - DD")}
                         moveMonth={this.moveMonth}
                     />
                     <Calendar YM={this.state.calendarYM.format("YYYY-MM-DD")}
