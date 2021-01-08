@@ -17,7 +17,7 @@
 /* header */
 .RCA-header-container {
   flex-basis: 50px;
-  background-color: rgb(209, 240, 226);
+  background-color: rgb(255, 255, 255);
   display: flex;
   border-radius: 2px;
 }
@@ -87,7 +87,7 @@
   width: 14.2857143%;
   text-align: center;
   box-sizing: border-box;
-  background-color: rgb(107, 107, 108);
+  background-color: rgb(255, 255, 255);
   border: 0.1px solid white;
   font-size: 1.5rem;
   line-height: 50px;
@@ -99,14 +99,17 @@
 }
 
 .date-weekday {
-  color: rgba(255, 255, 255, 0.603);
+  text-align: right;
+  color: rgba(0, 0, 0, 0.603);
 }
 
 .date-sun {
+  text-align: right;
   color: tomato;
 }
 
 .date-sat {
+  text-align: right;
   color: skyblue;
 }
 
@@ -117,12 +120,15 @@
 }
 
 .RCA-calendar-day {
+  text-align: right;
   box-sizing: border-box;
   position: relative;
   flex-basis: 14.2857143%;
-  border: 0.1px solid white;
-  border-top: none;
-  background-color: rgb(225, 224, 224);
+  border: 0.1px solid rgb(199, 199, 199);
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  background-color: rgb(255, 255, 255);
 }
 
 .RCA-calendar-week {
@@ -150,14 +156,11 @@
 }
 
 .selected {
-  background-color: rgb(49, 50, 50);
+  background-color: rgb(195, 237, 237);
 }
 
 .selected label {
   font-size: 1.2rem;
-  color: white;
-  width: 25px;
-  height: 25px;
-  background-color: rgb(224, 62, 42);
-  border-radius: 100%;
+  color: rgb(0, 182, 249);
+  background-color: rgb(195, 237, 237);
 }
