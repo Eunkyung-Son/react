@@ -43,7 +43,7 @@ class Week extends Component {
       }
 
       return (
-        <div className={"RCA-calendar-day " + className} key={`RCA-${dayInfo.weekIndex}-${i}-day`} onClick={() => fn()}>
+        <div className={"RCA-calendar-day " + className} key={`RCA-${dayInfo.weekIndex}-${i}-day`} onClick={() => fn(dayInfo.yearMonthDayFormat)}>
           <label className="RCA-calendar-day">{dayInfo.getDay}</label>
         </div>
       )
