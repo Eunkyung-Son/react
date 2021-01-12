@@ -3,6 +3,7 @@ import moment from 'moment';
 
 class Week extends Component {
 
+
   state = {}
 
   Days = (firstDayFormat, weekIndex) => {
@@ -13,7 +14,7 @@ class Week extends Component {
       const Day = moment(firstDayFormat).add('d', i);
       _days.push({
         yearMonthDayFormat: Day.format("YYYY-MM-DD"),
-        getDay: Day.format('D'),
+        getDay: Day.format('DD'),
         isHolyDay: false,
         weekIndex
       });
@@ -22,7 +23,7 @@ class Week extends Component {
     return _days;
   }
 
-  mapDaysToComponents = (Days, calendarMonthYear, selectedDayFormat, fn = () => { }) => {
+  mapDaysToComponents = (Days, calendarMonthYear, selectedDayFormat, fn = (a) => { }) => {
 
     const thisMonth = moment(calendarMonthYear);
 
@@ -30,14 +31,12 @@ class Week extends Component {
 
       let className = "date-weekday-label";
 
+      // 이번달이 아닌 day
       if (!thisMonth.isSame(dayInfo.yearMonthDayFormat, 'month')) {
         className = "date-notThisMonth";
-      } else if (i === 0) {
-        className = "date-sun"
-      } else if (i === 6) {
-        className = "date-sat"
       }
 
+      // 오늘의 날짜와 선택한 날짜가 같으면
       if (moment(dayInfo.yearMonthDayFormat).isSame(selectedDayFormat, 'day')) {
         className = "selected"
       }
@@ -49,6 +48,8 @@ class Week extends Component {
       )
     })
   }
+
+
 
 
   render() {
@@ -66,6 +67,15 @@ class Week extends Component {
 
 class DateHeader extends Component {
 
+  // Array.map 메서드를 이용하여 date를 동일한 컴포넌트로 만들어 줄 것이기 때문에
+  // props로 전달 받은 dates의 형식을 구분해야 한다.
+  // props로 전달하는 dates의 경우는 Date가 array로 전달되는 경우,
+  // Date가 string이 되는 경우, 전달 되지 않는 경우 총 3가지 경우 이다.
+
+  // dateToArray 함수는 해당 props가 map을 쓰기 위하여 string이 들어오면
+  // split 메서드를 이용하여 스트링을 array로 변환시킨다.
+  // 다른 타입의 객체가 들어오는 경우 에러를 방지하기 위하여
+  // else문으로 default DateArray를 전달한다.
   dateToArray = (dates) => {
     if (Array.isArray(dates)) {
       return dates
@@ -84,6 +94,7 @@ class DateHeader extends Component {
       }
 
       return dateArray.map((date, index) => {
+        // 컴포넌트 중 일, 토, 평일은 구분해주어야 하기 대문에 index에 따라서 className이 결정된다 -> 색상으로 구분해 주기 위한 css 클래스
         const className = () => {
           let className = "RCA-calendar-date-component";
           if (index === 0) {
@@ -115,7 +126,17 @@ class DateHeader extends Component {
 }
 
 class Calendar extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSave = this.handleSave.bind(this);
+  }
+
+  handleSave(event) {
+    console.log(this, event)
+  }
+
   Weeks = (monthYear, selected, clickFn) => {
+    //"2020-01"
     const firstDayOfMonth = moment(monthYear).startOf('month');
     const firstDateOfMonth = firstDayOfMonth.get('d');
 
@@ -123,6 +144,8 @@ class Calendar extends Component {
 
     const _Weeks = [];
 
+
+    // 이번 달과 이번 달이 아닌 달의 label 색상 구분짓기
     for (let i = 0; i < 6; i++) {
       _Weeks.push((
         <Week key={`RCA-calendar-week-${i}`}
@@ -138,10 +161,13 @@ class Calendar extends Component {
   }
 
   render() {
+    console.log('C-props', this.props.YM);
     return (
       <div className="RCA-calendar-container">
-        <DateHeader dates={"Sun, Mon, Tue, Wed, Thu, Fri, Sat"} />
+        <DateHeader dates={"Su, Mo, Tu, We, Th, Fr, Sa"} />
         {this.Weeks(this.props.YM, this.props.selected, this.props.changeSelected)}
+        <button onClick={this.handleSave}>Save</button>
+
       </div>
     )
   }
