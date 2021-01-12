@@ -8,11 +8,14 @@ import './RCA.css'
 
 export default class App extends Component {
 
+    // 전역으로 변수 선언
     yearArr = [];
     monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+    // 현재 년 월의 정보 가져옴
     currentY = moment().year();
     currentM = moment().month();
+
     constructor(props) {
         super(props);
         this.state = {
@@ -31,6 +34,7 @@ export default class App extends Component {
         clickFn: () => { }
     }
 
+    // 컴포넌트가 그려지기 전에 배열 만들어줌
     componentWillMount() {
 
         for (let i = 2003; i <= 2024; i++) {
@@ -100,6 +104,7 @@ export default class App extends Component {
 
     onMonthChanged(clickedMonth) {
         this.currentM = clickedMonth;
+
 
         this.setState({
             calendarYM: moment(`${this.currentY}-${(this.currentM)}-01`)
