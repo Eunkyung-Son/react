@@ -3,24 +3,25 @@ import moment from 'moment';
 
 class Week extends Component {
 
+  dayArr = (firstDayFormat, weekIndex) => {
+    const fullWeekArr = []; // week의 인덱스가 전부 채워질 배열
 
-  state = {}
-
-  Days = (firstDayFormat, weekIndex) => {
-    const _days = [];
+    console.log("week의 첫번째 날짜 : ", firstDayFormat);
+    console.log("해당 월에서 몇번째 week인지 : ", weekIndex);
 
     for (let i = 0; i < 7; i++) {
 
-      const Day = moment(firstDayFormat).add('d', i);
-      _days.push({
-        yearMonthDayFormat: Day.format("YYYY-MM-DD"),
-        getDay: Day.format('DD'),
+      const firstDayOfWeekInitArr = moment(firstDayFormat).add('d', i);
+      // week의 첫번째 날짜로 초기화한 배열
+      fullWeekArr.push({ // 초기화한 배열에 반복문을 돌면서 날짜 정보를 채우자
+        yearMonthDayFormat: firstDayOfWeekInitArr.format("YYYY-MM-DD"),
+        getDay: firstDayOfWeekInitArr.format('DD'),
         isHolyDay: false,
         weekIndex
       });
     }
 
-    return _days;
+    return fullWeekArr;
   }
 
   mapDaysToComponents = (Days, calendarMonthYear, selectedDayFormat, fn = (a) => { }) => {
@@ -43,19 +44,36 @@ class Week extends Component {
 
       return (
         <div className={"RCA-calendar-day " + className} key={`RCA-${dayInfo.weekIndex}-${i}-day`} onClick={() => fn(dayInfo.yearMonthDayFormat)}>
-          <label className="RCA-calendar-day">{dayInfo.getDay}</label>
+          <label className="RCA-calendar-day-p">{dayInfo.getDay}</label>
         </div>
       )
     })
   }
 
+  //   tempFunc = (today) => {
+  //   const thisDay = moment(today).format("YYYY-MM-DD");
+  //   console.log("thisDay : ", thisDay);
+  //   return () => {
+  //     var className = "date-weekday-label"; // 기본적으로 채워질 css
+
+  //     // 오늘의 날짜와 선택한 날짜가 같으면
+  //     if (thisDay) {
+  //       console.log("thisDay222 : ", thisDay);
+  //       className = "selected"
+  //     }
+  //     return (
+  //       <div className={"RCA-calendar-day " + className}></div>
+  //     )
+  //   }
+
+  // }
 
 
 
   render() {
     return (
       <div className="RCA-calendar-week">
-        {this.mapDaysToComponents(this.Days(this.props.firstDayOfThisWeekformat, this.props.weekIndex),
+        {this.mapDaysToComponents(this.dayArr(this.props.firstDayOfThisWeekformat, this.props.weekIndex),
           this.props.ymOfThisCalendar,
           this.props.selected,
           this.props.fn
@@ -174,3 +192,4 @@ class Calendar extends Component {
 }
 
 export default Calendar;
+
