@@ -1,0 +1,48 @@
+#root {
+  height: auto;
+  min-height: 100%;
+}
+
+img {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 350px;
+  height: 350px;
+}
+
+.instagram-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.myfeed {
+  float: left;
+  text-align: center;
+}
+
+.myfeed li {
+  display: inline-block;
+  text-align: center;
+}
+
+.video {
+  border-top: 5px solid rgb(240, 190, 216);
+}
+
+.title {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 50px;
+}
+
+.temp {
+  width: 20px;
+  height: 20px;
+}
+
+li:hover {
+  opacity: 0.75;
+}
