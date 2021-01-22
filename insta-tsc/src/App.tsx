@@ -2,21 +2,25 @@ import React from 'react';
 import './App.css';
 
 interface ItemType {
+
   id: number,
   media_type: string,
   permalink: string,
   media_url: string,
   thumbnail_url: string,
+
 };
 
 type Props = {};
 
 type State = {
+
   error: any, // null 타입 같은 경우 어떻게 해야할까?
   isLoaded: boolean,
   data: Array<ItemType>,
   items: number,
   preItems: number,
+
 }
 
 class App extends React.Component<Props, State> {
