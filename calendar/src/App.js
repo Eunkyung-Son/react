@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from './Header'
 import Calendar from './Calendar'
 
 import moment from 'moment'
@@ -31,7 +30,7 @@ export default class App extends Component {
 
 
     static defaultProps = {
-        clickFn: () => { }
+        clickFn: () => { } // default prop를 사용해서 주입받을 타입을 명시해준다.
     }
 
     // 컴포넌트가 그려지기 전에 배열 만들어줌
@@ -40,7 +39,6 @@ export default class App extends Component {
         for (let i = 2003; i <= 2024; i++) {
             this.yearArr.push(i)
         }
-
 
         for (let j = this.monthArr.indexOf[0]; j <= this.monthArr.length; j++) {
             this.monthArr.push(j)
@@ -95,21 +93,20 @@ export default class App extends Component {
     }
 
     render() {
+        const { calendarYM, selected } = this.state;
         return (
             <div className="test-layout">
                 <div className="RCA-app-container">
                     <div>
                         { /* month select */}
-                        <select name="month" value={this.state.calendarYM.month() + 1} onChange={(e) => this.onMonthChanged(e.target.value)}>
+                        <select name="month" value={calendarYM.month() + 1} onChange={(e) => this.onMonthChanged(e.target.value)}>
                             {this.monthArr.length && this.monthArr.map((num, index) => (
                                 <option value={index + 1}>{num}</option>
                             ))}
                         </select>
                         {/* year select */}
                         <select name="year"
-                            value={this.state.calendarYM.year()}
-
-
+                            value={calendarYM.year()}
                             onChange={(e) => this.onYearChanged(e.target.value)}>
                             {this.yearArr.length && this.yearArr.map((num) => (
                                 <option value={num}>{num}</option>
@@ -119,8 +116,8 @@ export default class App extends Component {
                     </div>
 
 
-                    <Calendar YM={this.state.calendarYM.format("YYYY-MM-DD")}
-                        selected={this.state.selected}
+                    <Calendar YM={calendarYM.format("YYYY-MM-DD")}
+                        selected={selected}
                         changeSelected={this.changeSelected}
                     />
 

@@ -50,33 +50,15 @@ class Week extends Component {
     })
   }
 
-  //   tempFunc = (today) => {
-  //   const thisDay = moment(today).format("YYYY-MM-DD");
-  //   console.log("thisDay : ", thisDay);
-  //   return () => {
-  //     var className = "date-weekday-label"; // 기본적으로 채워질 css
-
-  //     // 오늘의 날짜와 선택한 날짜가 같으면
-  //     if (thisDay) {
-  //       console.log("thisDay222 : ", thisDay);
-  //       className = "selected"
-  //     }
-  //     return (
-  //       <div className={"RCA-calendar-day " + className}></div>
-  //     )
-  //   }
-
-  // }
-
-
-
   render() {
+    const { ymOfThisCalendar, selected, fn, weekIndex, firstDayOfThisWeekformat } = this.props;
+
     return (
       <div className="RCA-calendar-week">
-        {this.mapDaysToComponents(this.dayArr(this.props.firstDayOfThisWeekformat, this.props.weekIndex),
-          this.props.ymOfThisCalendar,
-          this.props.selected,
-          this.props.fn
+        {this.mapDaysToComponents(this.dayArr(firstDayOfThisWeekformat, weekIndex),
+          ymOfThisCalendar,
+          selected,
+          fn
         )}
       </div>
     )
@@ -111,17 +93,13 @@ class DateHeader extends Component {
         dateArray = ["일", "월", "화", "수", "목", "금", "토"]
       }
 
-      return dateArray.map((date, index) => {
+      return dateArray.map((date) => {
         // 컴포넌트 중 일, 토, 평일은 구분해주어야 하기 대문에 index에 따라서 className이 결정된다 -> 색상으로 구분해 주기 위한 css 클래스
         const className = () => {
           let className = "RCA-calendar-date-component";
-          if (index === 0) {
-            return className + " date-sun"
-          } else if (index === 6) {
-            return className + " date-sat"
-          } else {
-            return className + " date-weekday"
-          }
+
+          return className + " date-weekday"
+
         }
         return (
           <div className={className()} key={"RCA-header-" + date}>
@@ -135,23 +113,19 @@ class DateHeader extends Component {
   }
 
   render() {
+
+    const { dates } = this.props;
+
     return (
       <div className="RCA-calendar-date-header">
-        {this.mapArrayToDate(this.dateToArray(this.props.dates))}
+        {this.mapArrayToDate(this.dateToArray(dates))}
       </div>
     )
   }
 }
 
 class Calendar extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSave = this.handleSave.bind(this);
-  }
 
-  handleSave(event) {
-    console.log(this, event)
-  }
 
   Weeks = (monthYear, selected, clickFn) => {
     //"2020-01"
@@ -179,12 +153,13 @@ class Calendar extends Component {
   }
 
   render() {
+    const { YM, selected, changeSelected } = this.props;
+
     console.log('C-props', this.props.YM);
     return (
       <div className="RCA-calendar-container">
         <DateHeader dates={"Su, Mo, Tu, We, Th, Fr, Sa"} />
-        {this.Weeks(this.props.YM, this.props.selected, this.props.changeSelected)}
-        <button onClick={this.handleSave}>Save</button>
+        {this.Weeks(YM, selected, changeSelected)}
 
       </div>
     )

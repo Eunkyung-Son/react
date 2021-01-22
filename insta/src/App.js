@@ -14,10 +14,16 @@ class App extends Component {
       error: null,
       isLoaded: false,
       data: [],
-      items: 9, // 초기에 보여줄 사진 개수
+      items: 12, // 초기에 보여줄 사진 개수
       preItems: 0, // 페이징 처리 하기 위해 다음에 뿌려줄 이미지 갯수 담을 변수
 
     };
+
+  }
+
+  componentWillMount() {
+
+    window.removeEventListener("scroll", this.infiniteScroll);
 
   }
 
@@ -28,11 +34,6 @@ class App extends Component {
 
   }
 
-  componentWillMount() {
-
-    window.removeEventListener("scroll", this.infiniteScroll);
-
-  }
 
   callApi = () => {
 
