@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
-
-import { List, ListItem, Container } from '@material-ui/core';
-
+import { List } from '@material-ui/core';
 import BookListItem from './BookListItem';
-
 
 class BookList extends Component {
     render() {
-
-        const { books } = this.props;
-        const bookItems = books.map(book => { // 하나의 book 객체가 나오게 되면 이것을 가지고 반복문을 리턴
+        const bookItems = this.props.books.map(book => {
             return (
-                <ListItem key={book.ISBN}>
-                    <BookListItem book={book} /> { /*book 이라는 이름으로 prop를 전달해줌 -> BookListItem은 ListItem의 배열을 갖게된다 */}
-                </ListItem>
+                <BookListItem
+                    book={book}
+                    key={book.ISBN}
+                    onSelectedBook={this.props.onSelectedBook}
+                />
             )
         })
         return (
-            <Container maxWidth="sm">
-                <List>
-                    {bookItems}
-                </List>
-            </Container>
+            <List>
+                {bookItems}
+            </List>
         )
     }
 }
