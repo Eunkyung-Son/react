@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './insta.css';
 
 interface ItemType {
 
@@ -23,7 +23,7 @@ type State = {
 
 }
 
-class App extends React.Component<Props, State> {
+class Insta extends React.Component<Props, State> {
 
   constructor(props: Props) {
 
@@ -152,5 +152,5 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default App;
+export default Insta;
 
