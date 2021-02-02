@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { Provider } from 'mobx-react';
-import { CounterStore } from './store/CounterStore';
-
-// mobx와 react를 연결해주는 provider 
-// provider는 store를 제공을 한다 -> props 형태로 제공
-// App 하위에 있는 모든 컴포넌트들은 CounterStore를 사용할 수 있다.
 ReactDOM.render(
-  <Provider counterStore={CounterStore}>
+  <React.StrictMode>
     <App />
-  </Provider>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
