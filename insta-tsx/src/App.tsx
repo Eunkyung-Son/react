@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Insta from './insta';
-type Props = {};
+import Insta from './component/insta';
 
-type State = {};
 
-class App extends React.Component<Props, State> {
+class App extends React.Component {
   
     render(){
       return(
-        <Insta></Insta>
+        <div>
+        <Insta />
+        </div>
       )
     }
   }

@@ -35,7 +35,7 @@ export default class App extends Component {
     }
 
     // 컴포넌트가 그려지기 전에 배열 만들어줌
-    componentWillMount() {
+    componentDidMount() {
 
         for (let i = 2003; i <= 2024; i++) {
             this.yearArr.push(i)
@@ -52,7 +52,7 @@ export default class App extends Component {
 
         // day 클릭했을 때 발생하는 이벤트
         if (moment(clickedDate).isSame(this.state.selected, 'day')) {
-            this.props.clickFn(clickedDate);
+
             console.log(clickedDate);
             console.log(this.state.selected);
             return;
@@ -62,7 +62,6 @@ export default class App extends Component {
             selected: clickedDate
         })
 
-        this.props.clickFn(clickedDate)
         // select box 를 클릭하면 그 값에 맞는 날짜가 캘린더에 출력되어야 한다.
 
     }
@@ -77,7 +76,6 @@ export default class App extends Component {
         })
         console.log('year', this.currentY, this.currentM);
 
-        this.props.clickFn(clickedYear)
     }
 
     onMonthChanged(clickedMonth) {
@@ -90,7 +88,6 @@ export default class App extends Component {
         })
 
         console.log('month', this.currentY, this.currentM);
-        this.props.clickFn(clickedMonth)
 
     }
 

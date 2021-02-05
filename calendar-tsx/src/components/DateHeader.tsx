@@ -11,6 +11,7 @@ type State = {
 
 }
 
+
 export default class DateHeader extends React.Component<Props, State> {
 
   // Array.map 메서드를 이용하여 date를 동일한 컴포넌트로 만들어 줄 것이기 때문에

@@ -4,10 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Provider } from 'mobx-react';
+import InstaStore from './stores/InstaStore';
+
+const instaStore = new InstaStore();
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider instaStore={instaStore}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
