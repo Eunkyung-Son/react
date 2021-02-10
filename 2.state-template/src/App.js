@@ -20,6 +20,7 @@ class App extends Component {
   onSearchTitle(title) {
     let updateList = Books;
     updateList = updateList.filter(book => {
+      console.log(book.title.toLowerCase().search(title.toLowerCase()) !== -1)
       return book.title.toLowerCase().search(title.toLowerCase()) !== -1;
     });
 

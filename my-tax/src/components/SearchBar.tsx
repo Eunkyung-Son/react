@@ -7,8 +7,9 @@ import { AudioOutlined } from '@ant-design/icons';
 import { DatePicker, Space } from 'antd';
 
 
-type Props = {
 
+type Props = {
+  onSearchClient: any;
 };
 
 type State = {
@@ -29,23 +30,26 @@ const suffix = (
   />
 );
 
-const onSearch = (value:any) => console.log(value);
 
 class SearchBar extends React.Component<Props, State> {
 
 
 render() {
+  const { onSearchClient } = this.props;
     return (
     <Space direction="horizontal">
         
-        <RangePicker showTime />
+        <RangePicker 
+        />
 
         <Search
-          placeholder="input search text"
+          placeholder="검색할 거래처명을 입력하세요."
           allowClear
-          enterButton="Search"
-          size="large"
-          onSearch={onSearch}
+          enterButton="검색"
+          size="middle"
+          onSearch={(event:any) => onSearchClient(event)}
+
+
         />
       </Space>
     )

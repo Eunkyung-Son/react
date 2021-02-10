@@ -3,14 +3,21 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Provider } from 'mobx-react'; 
+
+import RootStore from './stores/RootStore'
+
 import { Layout } from 'antd';
 
+const store = new RootStore();
+
+
 ReactDOM.render(
-  <React.StrictMode>    
+  <Provider {...store}>
     <Layout>
       <App />
     </Layout>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

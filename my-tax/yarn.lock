@@ -7536,6 +7536,11 @@ mobx-react-lite@^2.2.0:
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-2.2.2.tgz#87c217dc72b4e47b22493daf155daf3759f868a6"
   integrity sha512-2SlXALHIkyUPDsV4VTKVR9DW7K3Ksh1aaIv3NrNJygTbhXe2A9GrcKHZ2ovIiOp/BXilOcTYemfHHZubP431dg==
 
+mobx-react-router@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mobx-react-router/-/mobx-react-router-4.1.0.tgz#de014848207d8aa32f6a4e67ed861bd2cb6516e5"
+  integrity sha512-2knsbDqVorWLngZWbdO8tr7xcZXaLpVFsFlCaGaoyZ+EP9erVGRxnlWGqKyFObs3EH1JPLyTDOJ2LPTxb/lB6Q==
+
 mobx-react@^6.1.8:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-6.3.1.tgz#204f9756e42e19d91cb6598837063b7e7de87c52"

@@ -1,100 +1,66 @@
-import { Tabs, Radio } from 'antd';
+import { Tabs } from "antd";
 import React from "react";
-import './ContentComponent.css';
-import SearchBar from './SearchBar';
-import TableComponent from './TableComponent';
+import "./ContentComponent.css";
+import SearchBar from "./SearchBar";
+import TableData from "./TableData";
+import { CategoryTabConfig } from "../static_data/Datas";
 
-import Datas from './Datas';
+import { inject, observer } from "mobx-react";
+import ContentStore from "../stores/ContentStore";
 
 type Props = {
-
+  category: Array<CategoryTabConfig>;
+  columns: any;
+  contentStore?: ContentStore;
 };
 
 type State = {
-
-    size: string;
-    datas: any;
-    selectedBook: any;
-    category: any;
-
-  };
-
-function callback(key: any) {
-  console.log(key);
-}                 
+  size: string;
+};
 
 const { TabPane } = Tabs;
 
+@inject("contentStore")
+@observer
 class ContentComponent extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      size: "small",
+    };
+  }
 
-
-    constructor(props:Props) {
-        super(props);
-        this.state = {
-            size: 'small',
-            datas: Datas.Datas,
-            category: Datas.Category,
-            selectedBook: Datas.Datas[0],
-        }
-    }
-
-
-//   onSearchTitle(title:string) {
-//     let updateList = Datas;
-//     updateList = updateList.filter((data: { date: string; }) => {
-//       return data.date.toLowerCase().search(title.toLowerCase()) !== -1;
-//     });
-
-//     this.setState({
-//       datas: updateList,
-
-//     })
-//   }
-
-//   onSelectedBook(data:any) {
-//     this.setState({
-//       selectedBook: data,
-//     });
-//   }
-
-
-  onChange = (e:any) => {
+  onChange = (e: any) => {
     this.setState({ size: e.target.value });
   };
 
-
-
   render() {
-    const ctgrItems = this.state.category.map
-        
-    ((ctgr: React.ReactNode, i: number) => {
+    const { contentStore, columns } = this.props;
 
-        return (
+    const ctgrItems = this.props.category.map((ctgr: CategoryTabConfig) => {
+      return (
+        <TabPane tab={ctgr.tabTitle} key={ctgr.key}>
+          <SearchBar onSearchClient={contentStore?.onSearchClient.bind(this)} />
 
-            <TabPane tab={ctgr} key={i}>
-            </TabPane>
-        )
-      
-      })
+          <br />
+
+          <TableData columns={columns} data={contentStore?.selectedData} />
+        </TabPane>
+      );
+    });
 
     return (
-      <div>
-        <Tabs defaultActiveKey=""
-              onChange={callback}
-              type="card">
-
+      <div className="card-container">
+        <Tabs
+          defaultActiveKey="1"
+          onChange={contentStore?.onSelectedTab}
+          type="card"
+        >
           {ctgrItems}
-
         </Tabs>
-
-          <SearchBar />
-
-          <TableComponent datas={this.state.datas}/>
-
       </div>
     );
   }
 }
-
 
 export default ContentComponent;
